@@ -1,11 +1,33 @@
+// All the necessary imports
+import { buttonVisibility } from "./utils/buttonsVisibility.js";
+import { checkInputCharacters } from "./utils/checkInputCharacters.js";
+import { clearModal } from "./utils/clearModal.js";
+import { updateAttributes } from "./utils/updateAttributes.js";
 import { updateButtonsVisibility } from "./utils/updateButtonsVisibility.js";
+import { updateDOM } from "./utils/updateDOM.js";
+import { updateDigits } from "./utils/updateDigits.js";
+import { updateModalValues } from "./utils/updateModalValues.js";
 
+// Buttons Available
 const start = document.querySelector(".start");
 const pause = document.querySelector(".pause");
 const editBtn = document.querySelector(".edit");
+const confirmBtn = document.querySelector(".confirm");
+const cancel = document.querySelector(".cancel");
+const reset = document.querySelector(".reset");
+
+// Inputs Available
+const hoursInputHTML = document.querySelector(".input-hours");
+const minutesInputHTML = document.querySelector(".input-minutes");
+const secondsInputHTML = document.querySelector(".input-seconds");
+
+// HTML elements for the Attributes
+const hoursElement = document.querySelector('.bloc-time.hours');
+const minutesElement = document.querySelector('.bloc-time.min');
+const secondsElement = document.querySelector('.bloc-time.sec');
+
 // Create Countdown
 var Countdown = {
-
     // Backbone-like structure
     $el: $('.countdown'),
 
@@ -16,45 +38,42 @@ var Countdown = {
     isRunningCountdown: false,
     isEditable: false,
 
+    hoursRemaining: 24,
+    minutesRemaining: 0,
+    secondsRemaining: 0,
+
     pauseCountdown: function () {
         clearInterval(this.countdown_interval);
     },
 
     edit: function () {
-        alert("gay")
-    },
-
-    buttonVisibility: function () {
-        if (this.isRunningCountdown) {
-            start.style.display = "none"
-            pause.style.display = "block"
-            editBtn.style.display = "none"
-        } else {
-            start.style.display = "block"
-            pause.style.display = "none"
-            editBtn.style.display = "block"
-        };
+        alert("Not ready yet")
     },
 
     // Initialize the countdown  
     init: function () {
         document.addEventListener("DOMContentLoaded", () => {
             updateButtonsVisibility(this.isRunningCountdown);
-            this.buttonVisibility();
+            buttonVisibility(this.isRunningCountdown, start, pause, editBtn);
+            updateDOM(this.hoursRemaining, this.minutesRemaining, this.secondsRemaining, updateDigits);
+
+            checkInputCharacters(hoursInputHTML);
+            checkInputCharacters(minutesInputHTML);
+            checkInputCharacters(secondsInputHTML);
         }),
 
             // DOM
             this.$ = {
                 hours: this.$el.find('.bloc-time.hours .figure'),
                 minutes: this.$el.find('.bloc-time.min .figure'),
-                seconds: this.$el.find('.bloc-time.sec .figure')
+                seconds: this.$el.find('.bloc-time.sec .figure'),
             };
 
         // Init countdown values
         this.values = {
-            hours: this.$.hours.parent().attr('data-init-value'),
-            minutes: this.$.minutes.parent().attr('data-init-value'),
-            seconds: this.$.seconds.parent().attr('data-init-value'),
+            hours: this.$.hours.parent().attr('hours'),
+            minutes: this.$.minutes.parent().attr('minutes'),
+            seconds: this.$.seconds.parent().attr('seconds'),
         };
 
         // Initialize total seconds
@@ -62,12 +81,13 @@ var Countdown = {
 
         const that = this;
 
+        // done
         start.addEventListener("click", function () {
             if (!that.isRunningCountdown) {
                 that.isRunningCountdown = true;
                 that.count();
                 updateButtonsVisibility(that.isRunningCountdown);
-                that.buttonVisibility();
+                buttonVisibility(that.isRunningCountdown, start, pause, editBtn);
             }
         });
 
@@ -75,17 +95,56 @@ var Countdown = {
             that.pauseCountdown();
             that.isRunningCountdown = false;
             updateButtonsVisibility(that.isRunningCountdown);
-            that.buttonVisibility();
+            buttonVisibility(that.isRunningCountdown, start, pause, editBtn);
         });
 
         editBtn.addEventListener("click", function () {
             that.edit();
         });
+
+        // done
+        confirmBtn.addEventListener("click", function () {
+            that.isEditable = true;
+
+            const { hours, minutes, seconds } = updateModalValues(
+                hoursInputHTML,
+                minutesInputHTML,
+                secondsInputHTML,
+                that.hoursRemaining,
+                that.minutesRemaining,
+                that.secondsRemaining,
+                updateDigits
+            );
+
+            that.hoursRemaining = hours;
+            that.minutesRemaining = minutes;
+            that.secondsRemaining = seconds;
+
+            updateAttributes(that, hoursElement, minutesElement, secondsElement, hours, minutes, seconds, updateDigits);
+
+            clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
+        });
+
+        cancel.addEventListener("click", function () {
+            that.isEditable = false;
+            clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
+        });
+
+        // done
+        reset.addEventListener("click", function () {
+            that.hoursRemaining = 0;
+            that.minutesRemaining = 0;
+            that.secondsRemaining = 0;
+
+            updateAttributes(that, hoursElement, minutesElement, secondsElement, that.hoursRemaining, that.minutesRemaining, that.secondsRemaining, updateDigits);
+
+            clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
+            updateDOM(that.hoursRemaining, that.minutesRemaining, that.secondsRemaining, updateDigits);
+        });
     },
 
-
+    // done
     count: function () {
-
         var that = this,
             $hour_1 = this.$.hours.eq(0),
             $hour_2 = this.$.hours.eq(1),
@@ -130,6 +189,7 @@ var Countdown = {
         }, 1000);
     },
 
+    // done
     animateFigure: function ($el, value) {
 
         var that = this,
@@ -167,6 +227,7 @@ var Countdown = {
         });
     },
 
+    // done
     checkHour: function (value, $el_1, $el_2) {
 
         var val_1 = value.toString().charAt(0),
@@ -186,7 +247,7 @@ var Countdown = {
             if (fig_1_value !== '0') this.animateFigure($el_1, 0);
             if (fig_2_value !== val_1) this.animateFigure($el_2, val_1);
         }
-    }
+    },
 };
 
 // Let's go !
