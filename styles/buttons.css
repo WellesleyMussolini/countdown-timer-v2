@@ -1,0 +1,51 @@
+.primary-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.primary-buttons button{
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    padding: 13px 28px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.14);
+    text-transform: uppercase;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.2);
+    padding: 18px 49px;
+    border: medium none;
+    background-size: 400% 400%;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.start {
+    background: #05ac50;
+    background: -moz-linear-gradient(-45deg, #05ac50 0%, #21dd72 50%, #05c44e 51%, #05ac50 71%, #05ac50 100%);
+    /* background: -webkit-linear-gradient(-45deg, #05ac50 0%, #21dd72 50%, #05c44e 51%, #05ac50 71%, #05ac50 100%); */
+    /* background: linear-gradient(135deg, #05ac50 0%, #21dd72 50%, #05c44e 51%, #05ac50 71%, #05ac50 100%); */
+}
+
+.pause {
+    background: #e5ae09;
+    background: -moz-linear-gradient(-45deg, #e5ae09 0%, #ffd044 50%, #ffc107 51%, #fc9014 71%, #f1890b 100%);
+    /* background: -webkit-linear-gradient(-45deg, #e5ae09 0%, #ffd044 50%, #ffc107 51%, #fc9014 71%, #f1890b 100%); */
+    /* background: linear-gradient(135deg, #e5ae09 0%, #ffd044 50%, #ffc107 51%, #fc9014 71%, #f1890b 100%); */
+    color: #fff !important;
+}
+
+.edit {
+    background: #f2f2f2;
+    background: -moz-linear-gradient(-45deg, #f2f2f2 0%, #dddddd 50%, #ffffff 51%, #ffffff 71%, #f6f8fb 100%);
+    /* background: -webkit-linear-gradient(-45deg, #f2f2f2 0%, #dddddd 50%, #ffffff 51%, #ffffff 71%, #f6f8fb 100%); */
+    /* background: linear-gradient(135deg, #f2f2f2 0%, #dddddd 50%, #ffffff 51%, #ffffff 71%, #f6f8fb 100%); */
+    color: #3f345f !important;
+}
+
+.reset {
+    background: #e81216;
+    background: -moz-linear-gradient(-45deg, #e81216 0%, #f45355 50%, #f6290c 51%, #ed0e11 71%, #fc1b21 100%);
+    /* background: -webkit-linear-gradient(-45deg, #e81216 0%, #f45355 50%, #f6290c 51%, #ed0e11 71%, #fc1b21 100%); */
+    /* background: linear-gradient(135deg, #e81216 0%, #f45355 50%, #f6290c 51%, #ed0e11 71%, #fc1b21 100%); */
+}
