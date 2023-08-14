@@ -2,6 +2,10 @@
 
 Welcome to the Flipdown Countdown Timer project! This repository contains a versatile countdown timer implementation that features an engaging flipdown animation effect. With the ability to start, pause, reset, and edit countdown values, this project offers a user-friendly experience for managing countdowns.
 
+## Try It Out
+
+Ready to see the Flipdown Countdown Timer in action? Give it a try by exploring the live demo [here](https://wellesleymussolini.github.io/flipdown-timer/).
+
 ## Overview
 
 The Flipdown Countdown Timer is designed to enhance user experience by visually representing time countdowns using a unique flipdown animation. This project's key features include:
@@ -30,10 +34,6 @@ To use the Flipdown Countdown Timer:
 3. Pause the timer at any point to halt the countdown.
 4. Reset the timer to its initial state, ready for the next countdown.
 5. Edit the countdown duration with user-friendly input validation.
-
-## Try It Out
-
-Ready to see the Flipdown Countdown Timer in action? Give it a try by exploring the live demo [here](https://wellesleymussolini.github.io/flipdown-timer/).
 
 ## Contributions
 
