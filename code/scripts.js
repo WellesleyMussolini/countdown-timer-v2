@@ -1,9 +1,9 @@
-// All the necessary imports
+// All the necessary functions
 import { buttonVisibility } from "./utils/buttonsVisibility.js";
 import { checkInputCharacters } from "./utils/checkInputCharacters.js";
 import { clearModal } from "./utils/clearModal.js";
+import { toggleModal } from "./utils/toggleModal.js";
 import { updateAttributes } from "./utils/updateAttributes.js";
-import { updateButtonsVisibility } from "./utils/updateButtonsVisibility.js";
 import { updateDOM } from "./utils/updateDOM.js";
 import { updateDigits } from "./utils/updateDigits.js";
 import { updateModalValues } from "./utils/updateModalValues.js";
@@ -11,7 +11,7 @@ import { updateModalValues } from "./utils/updateModalValues.js";
 // Buttons Available
 const start = document.querySelector(".start");
 const pause = document.querySelector(".pause");
-const editBtn = document.querySelector(".edit");
+const edit = document.querySelector(".edit");
 const confirmBtn = document.querySelector(".confirm");
 const cancel = document.querySelector(".cancel");
 const reset = document.querySelector(".reset");
@@ -46,20 +46,17 @@ var Countdown = {
         clearInterval(this.countdown_interval);
     },
 
-    edit: function () {
-        alert("Not ready yet")
-    },
-
     // Initialize the countdown  
     init: function () {
         document.addEventListener("DOMContentLoaded", () => {
-            updateButtonsVisibility(this.isRunningCountdown);
-            buttonVisibility(this.isRunningCountdown, start, pause, editBtn);
+            buttonVisibility(this.isRunningCountdown, start, pause, edit);
             updateDOM(this.hoursRemaining, this.minutesRemaining, this.secondsRemaining, updateDigits);
 
             checkInputCharacters(hoursInputHTML);
             checkInputCharacters(minutesInputHTML);
             checkInputCharacters(secondsInputHTML);
+
+            toggleModal(this.isEditable);
         }),
 
             // DOM
@@ -86,25 +83,26 @@ var Countdown = {
             if (!that.isRunningCountdown) {
                 that.isRunningCountdown = true;
                 that.count();
-                updateButtonsVisibility(that.isRunningCountdown);
-                buttonVisibility(that.isRunningCountdown, start, pause, editBtn);
+                buttonVisibility(that.isRunningCountdown, start, pause, edit);
             }
         });
 
         pause.addEventListener("click", function () {
             that.pauseCountdown();
             that.isRunningCountdown = false;
-            updateButtonsVisibility(that.isRunningCountdown);
-            buttonVisibility(that.isRunningCountdown, start, pause, editBtn);
+            buttonVisibility(that.isRunningCountdown, start, pause, edit);
         });
 
-        editBtn.addEventListener("click", function () {
-            that.edit();
+        // done
+        edit.addEventListener("click", function () {
+            this.isEditable = true;
+            toggleModal(this.isEditable);
         });
 
         // done
         confirmBtn.addEventListener("click", function () {
-            that.isEditable = true;
+            that.isEditable = false;
+            toggleModal(this.isEditable);
 
             const { hours, minutes, seconds } = updateModalValues(
                 hoursInputHTML,
@@ -125,8 +123,10 @@ var Countdown = {
             clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
         });
 
+        // done
         cancel.addEventListener("click", function () {
             that.isEditable = false;
+            toggleModal(this.isEditable);
             clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
         });
 
