@@ -1,9 +1,13 @@
 import { toggleElementVisibility } from "./toggleElementVisibility.js";
-
-const overlay = document.querySelector(".modal-overlay");
+const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
 
 export const toggleModal = (isEdited) => {
-    toggleElementVisibility[isEdited ? 'visible' : 'hidden'](overlay);
-    toggleElementVisibility[isEdited ? 'visible' : 'hidden'](modal);
+    if (isEdited) {
+        toggleElementVisibility.visible(modal);
+        toggleElementVisibility.visible(overlay);
+    } else {
+        toggleElementVisibility.hidden(modal);
+        toggleElementVisibility.hidden(overlay);
+    }
 };
