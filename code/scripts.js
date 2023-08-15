@@ -49,6 +49,7 @@ var Countdown = {
     // Initialize the countdown  
     init: function () {
         document.addEventListener("DOMContentLoaded", () => {
+            this.isEditable = false;
             buttonVisibility(this.isRunningCountdown, start, pause, edit);
             updateDOM(this.hoursRemaining, this.minutesRemaining, this.secondsRemaining, updateDigits);
 
