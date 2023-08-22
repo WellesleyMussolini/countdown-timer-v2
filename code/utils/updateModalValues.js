@@ -1,28 +1,18 @@
-import { checkInputCharacters } from "./checkInputCharacters.js";
 import { updateDOM } from "./updateDOM.js";
 
 export const updateModalValues = (
-    // inputs
-    hoursInputHTML,
-    minutesInputHTML,
-    secondsInputHTML,
-
-    // variables that will be updated
-    hoursRemaining,
-    minutesRemaining,
-    secondsRemaining,
+    // select elements
+    selectHours,
+    selectMinutes,
+    selectSeconds,
 
     // function where it updates the input values
     updateDigitsMethod
 ) => {
-    checkInputCharacters(hoursInputHTML);
-    checkInputCharacters(minutesInputHTML);
-    checkInputCharacters(secondsInputHTML);
-
-    // if the input is empty then remains the last digit
-    const hours = parseInt(hoursInputHTML.value.trim()) || hoursRemaining;
-    const minutes = parseInt(minutesInputHTML.value.trim()) || minutesRemaining;
-    const seconds = parseInt(secondsInputHTML.value.trim()) || secondsRemaining;
+    // Get the selected values directly from the <select> elements
+    const hours = parseInt(selectHours.value);
+    const minutes = parseInt(selectMinutes.value);
+    const seconds = parseInt(selectSeconds.value);
 
     // updates the DOM
     updateDOM(hours, minutes, seconds, updateDigitsMethod);
