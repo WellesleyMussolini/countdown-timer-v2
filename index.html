@@ -10,12 +10,23 @@
   <link rel="stylesheet" href="styles/flipdown.css">
   <link rel="stylesheet" href="styles/buttons.css">
   <link rel="stylesheet" href="styles/modal.css">
+  <link rel="stylesheet" href="styles/styles.css">
+  <!-- icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
   <div class="wrapper">
     <div class="flipdown">
-      <h1>Draft <strong>Countdown</strong></h1>
+      <div class="info">
+        <h1>Draft <strong>Countdown</strong></h1>
+        <h2 class="developer">Developed by <strong>Wellesley Mussolini</strong></h2>
+        <a href="https://github.com/WellesleyMussolini/flipdown-timer" class="github">
+          <i class="fa fa-github"></i>
+          <span>Get started</span>
+        </a>
+      </div>
+
       <div class="countdown">
         <div class="bloc-time hours" hours="24">
           <span class="count-title">Hours</span>
@@ -93,6 +104,7 @@
           </div>
         </div>
       </div>
+
       <div>
       </div>
     </div>
@@ -100,32 +112,31 @@
     <div class="overlay"></div>
 
     <div class="modal">
-      <div>
-        <p>Hours</p>
-        <input class="input-hours" type="number" placeholder="hours..." />
+      <span class="close">×</span>
+      <div class="inputs">
+        <div class="modal-hours">
+          <p>Hours</p>
+          <select class="input-hours"></select>
+        </div>
+        <div class="modal-minutes">
+          <p>Minutes</p>
+          <select class="input-minutes"></select>
+        </div>
+        <div class="modal-seconds">
+          <p>Seconds</p>
+          <select class="input-seconds"></select>
+        </div>
       </div>
-      <div>
-        <p>Minutes</p>
-        <input class="input-minutes" type="number" placeholder="minutes..." />
-      </div>
-      <div>
-        <p>Seconds</p>
-        <input class="input-seconds" type="number" placeholder="seconds..." />
-      </div>
-      <div class="buttons">
-        <button type="submit" class="confirm">CONFIRM</button>
-        <button class="cancel">CANCEL</button>
-      </div>
+      <button type="submit" class="confirm">CONFIRM</button>
     </div>
 
     <div class="primary-buttons">
+      <button class="edit">EDIT</button>
       <button class="start">START</button>
       <button class="pause">PAUSE</button>
-      <button class="edit">EDIT</button>
       <button type="reset" class="reset">RESET</button>
     </div>
   </div>
-  <h2>Developed by <strong>Wellesley Mussolini</strong></h2>
 
   <script type="module" src="code/scripts.js"></script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
