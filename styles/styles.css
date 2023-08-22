@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f1ed;
+}
+
+.wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    gap: 60px;
+}
+
+a {
+    text-decoration: none;
+    color: #1a1a1a;
+    margin-bottom: 50px;
+}
+
+h1 {
+    text-align: center;
+    font: 300 2.25em "Lato";
+    text-transform: uppercase;
+}
+
+h1 strong {
+    font-weight: 400;
+    color: #ea4c4c;
+}
+
+h2 {
+    text-align: center;
+    /* font: 300 0.7em "Lato"; */
+    font: 300 1.5em "Lato";
+    text-transform: uppercase;
+}
+
+h2 strong {
+    font-weight: 400;
+    color: #ea4c4c;
+}
+
+.info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+}
+
+
+.github {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+
+    height: 50px;
+    box-sizing: border-box;
+    line-height: 46px;
+    text-decoration: none;
+    color: #333;
+    padding: 0px 20px;
+    border: solid 2px #333;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: all .2s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+}
+
+.github:hover {
+    background: black;
+    color: #fff;
+}
+
+.github .fa-github{
+    font-size: 2em;
+}
