@@ -1,6 +1,6 @@
 // All the necessary functions
+import { modalOptions } from "./components/modal/modalOptions.js";
 import { buttonVisibility } from "./utils/buttonsVisibility.js";
-import { checkInputCharacters } from "./utils/checkInputCharacters.js";
 import { clearModal } from "./utils/clearModal.js";
 import { toggleModal } from "./utils/toggleModal.js";
 import { updateAttributes } from "./utils/updateAttributes.js";
@@ -13,7 +13,7 @@ const start = document.querySelector(".start");
 const pause = document.querySelector(".pause");
 const edit = document.querySelector(".edit");
 const confirmBtn = document.querySelector(".confirm");
-const cancel = document.querySelector(".cancel");
+const close = document.querySelector(".close");
 const reset = document.querySelector(".reset");
 
 // Inputs Available
@@ -53,11 +53,9 @@ var Countdown = {
             buttonVisibility(this.isRunningCountdown, start, pause, edit);
             updateDOM(this.hoursRemaining, this.minutesRemaining, this.secondsRemaining, updateDigits);
 
-            checkInputCharacters(hoursInputHTML);
-            checkInputCharacters(minutesInputHTML);
-            checkInputCharacters(secondsInputHTML);
-
             toggleModal(this.isEditable);
+
+            modalOptions();
         }),
 
             // DOM
@@ -109,9 +107,6 @@ var Countdown = {
                 hoursInputHTML,
                 minutesInputHTML,
                 secondsInputHTML,
-                that.hoursRemaining,
-                that.minutesRemaining,
-                that.secondsRemaining,
                 updateDigits
             );
 
@@ -125,7 +120,7 @@ var Countdown = {
         });
 
         // done
-        cancel.addEventListener("click", function () {
+        close.addEventListener("click", function () {
             that.isEditable = false;
             toggleModal(this.isEditable);
             clearModal(hoursInputHTML, minutesInputHTML, secondsInputHTML);
